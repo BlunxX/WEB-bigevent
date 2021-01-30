@@ -24,27 +24,30 @@ $(function () {
     //监听注册提交事件
     $('#form_reg').on('submit', function (e) {
         e.preventDefault()
-        $.post('http://ajax.frontend.itheima.net/api/reguser', {
+        var data = {
             username: $('#form_reg [name=username]').val(),
             password: $('#form_reg [name=password]').val()
-        }, function (res) {
+        }
+        $.post('/api/reguser', data, function (res) {
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
-            layer.msg('注册成功')
+            layer.msg('注册成功，请登录！')
+            // 模拟人的点击行为
             $('#link_login').click()
         })
-        // var data = {
-        //     username: $('#form_reg [name=username]').val(),
-        //     password: $('#form_reg [name=password]').val()
-        // }
-        // $.post('/api/reguser', data, function (res) {
-        //     if (res.status !== 0) {
-        //         return layer.msg(res.message)
-        //     }
-        //     console.log('注册成功');
-        // })
     })
+    // var data = {
+    //     username: $('#form_reg [name=username]').val(),
+    //     password: $('#form_reg [name=password]').val()
+    // }
+    // $.post('/api/reguser', data, function (res) {
+    //     if (res.status !== 0) {
+    //         return layer.msg(res.message)
+    //     }
+    //     console.log('注册成功');
+    // })
+
     //监听登录事件
     $('#form_login').submit(function (e) {
         e.preventDefault()
