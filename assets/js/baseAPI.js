@@ -1,6 +1,7 @@
 $.ajaxPrefilter(function (options) {
     options.url = 'http://ajax.frontend.itheima.net' + options.url//统一请求的路径
 
+
     // 统一为有权限的接口，设置 headers 请求头
     if (options.url.indexOf('/my/') !== -1) {
         options.headers = {
